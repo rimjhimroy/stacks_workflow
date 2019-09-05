@@ -6,6 +6,8 @@ Developed by [Eric Normandeau](https://github.com/enormandeau) in
 [Louis Bernatchez](http://www.bio.ulaval.ca/louisbernatchez/presentation.htm)'s
 laboratory.
 
+This fork is a development repo for moving single-ended analysis to paired-end, developed by Rimjhim Roy Choudhury.
+
 **Warning!**: this software is provided "as is", without warranty of any kind,
 express or implied, including but not limited to the warranties of
 merchantability, fitness for a particular purpose and noninfringement. In no
@@ -145,6 +147,12 @@ stacks_workflow.
 All file names **must** end with **.fastq.gz** for the following scripts to
 work.
 
+For paired-end data use the name convention as: **{Sample_name_with_lane}.R1.fastq.gz** and  **{Sample_name_with_lane}.R2.fastq.gz**. 
+
+Instead of putting a copy you can also use symbolic links:
+```bash
+ln -s /PATH/TO/FASTQGZ/FILE 02-raw/.
+```
 ### Preparing the `lane_info.txt` file
 
 This file will contain the names of the raw data files and is used by

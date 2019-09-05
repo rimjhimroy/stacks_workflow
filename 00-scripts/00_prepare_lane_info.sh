@@ -9,10 +9,10 @@ LOG_FOLDER="10-log_files"
 
 cp $SCRIPT $LOG_FOLDER/"$TIMESTAMP"_"$NAME"
 
-for i in $(ls -1 02-raw/*.fastq.gz)
+for i in $(ls -1 02-raw/*.R1.fastq.gz)
 do
     # TEST:
     # echo ${$i%.fastq}.gz
-    basename $i | perl -pe 's/\.fastq\.gz//'
+    basename $i | perl -pe 's/\.R1.fastq\.gz//'
 done > 01-info_files/lane_info.txt
 

@@ -149,9 +149,9 @@ work.
 
 For paired-end data use the name convention as: **{Sample_name_with_lane}.R1.fastq.gz** and  **{Sample_name_with_lane}.R2.fastq.gz**. 
 
-Instead of putting a copy you can also use symbolic links:
+Instead of putting a copy you can also use symbolic links. For instance if your file is named sample_L1_R1_001.fastq.gz, and is located in some PATH you can make symbolic links the following way:
 ```bash
-ln -s /PATH/TO/FASTQGZ/FILE 02-raw/.
+ln -s /PATH/sample_L1_R1_001.fastq.gz 02-raw/sample_L1.R1.fastq.gz
 ```
 ### Preparing the `lane_info.txt` file
 

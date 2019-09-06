@@ -72,3 +72,5 @@ population_map.txt
 sample_files*
 samples_split/*
 temp.list.*
+
+.vscode/

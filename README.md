@@ -30,13 +30,11 @@ provided with stacks_workflow for more details.
 
 ## Downloading
 
-[click here to
-download](https://github.com/enormandeau/stacks_workflow/archive/master.zip)
-the current version of the stacks workflow. alternatively, you can clone this
+You can clone this
 repository with:
 
 ```bash
-git clone https://github.com/enormandeau/stacks_workflow
+git clone https://github.com/rimjhimroy/stacks_workflow
 ```
 
 ## About STACKS

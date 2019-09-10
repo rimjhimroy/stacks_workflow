@@ -193,8 +193,8 @@ Save this file in the `01-info_files` folder and name it exactly
 The `sample_information.csv` file will be used to extract the samples and
 rename the extracted sample files automatically.
 
-The first column **MUST** contain the **EXACT** name of the data file for the
-lane of each sample.
+The first column **MUST** contain the name of the data file for the
+lane of each sample without **.R1.fastq.gz or .R2.fastq.gz**.
 
 **Notes**:
 

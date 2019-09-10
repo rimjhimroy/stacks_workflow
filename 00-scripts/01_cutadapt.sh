@@ -26,6 +26,6 @@ parallel -j $NCPU cutadapt -a file:01-info_files/adapters.fasta \
         -p 02-raw/trimmed/{/} \
         -e 0.2 \
         -m 50 \
-        -1 {}.R1.fastq.gz \
-        -2 {}.R2.fastq.gz '2>&1' '>>' 10-log_files/"$TIMESTAMP"_01_cutadapt"${i%.fastq.gz}".log
+        {}.R1.fastq.gz \
+        {}.R2.fastq.gz '2>&1' '>>' 10-log_files/"$TIMESTAMP"_01_cutadapt"${i%.fastq.gz}".log
 

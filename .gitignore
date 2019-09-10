@@ -74,3 +74,5 @@ samples_split/*
 temp.list.*
 
 .vscode/
+
+.vs/

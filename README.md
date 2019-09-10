@@ -247,6 +247,21 @@ Where:
  - **enzyme2** = name of the second enzyme (run `process_radtags`, without
    options, for a list of the supported enzymes)
 
+#### Paired-end data with two restriction enzymes
+
+```bash
+./00-scripts/02_process_radtags_2_enzymes_Paired_end.sh <trimLength> <enzyme1> <enzyme2>
+```
+
+Where:
+
+ - **trimLength** = length to trim all the sequences. This should be the length
+   of the Illumina reads minus the length of the longest tag or MID.
+ - **enzyme1** = name of the first enzyme (run `process_radtags`, without
+   options, for a list of the supported enzymes)
+ - **enzyme2** = name of the second enzyme (run `process_radtags`, without
+   options, for a list of the supported enzymes)
+
 #### Two restriction enzymes in parallel over multiple CPUs
 
 ```bash

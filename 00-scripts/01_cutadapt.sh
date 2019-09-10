@@ -22,8 +22,8 @@ mkdir 02-raw/trimmed 2>/dev/null
 rm 10-log_files/"$TIMESTAMP"_01_cutadapt"${i%.fastq.gz}".log 2> /dev/null
 ls -1 02-raw/*.R1.fastq.gz | sed 's/.R1.fastq.gz//g' |
 parallel -j $NCPU cutadapt -a file:01-info_files/adapters.fasta \
-        -o 02-raw/trimmed/{/} \
-        -p 02-raw/trimmed/{/} \
+        -o 02-raw/trimmed/{/}.R1.fastq.gz \
+        -p 02-raw/trimmed/{/}.R2.fastq.gz \
         -e 0.2 \
         -m 50 \
         {}.R1.fastq.gz \

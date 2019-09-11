@@ -1,31 +1,26 @@
 #!/bin/bash
-# Removing adapters using cutadapt
+
+#script to run gbsx
+#see full documentation at: https://github.com/GenomicsCoreLeuven/GBSX
 TIMESTAMP=$(date +%Y-%m-%d_%Hh%Mm%Ss)
-NCPU=$1
-
-# Copy script as it was run
-SCRIPT=$0
-NAME=$(basename $0)
-LOG_FOLDER="10-log_files"
-
-cp $SCRIPT $LOG_FOLDER/"$TIMESTAMP"_"$NAME"
-
-# Test if user specified a number of CPUs
-if [[ -z "$NCPU" ]]
-then
-    NCPU=1
+NCPU=8 #number of CPU, can be set to any number
+INFO_FILES="01-info_files"
+#can be customized very easily
+if [ ! -d "03-demultiplex/" ]  ; then
+    echo "creation du dossier" ;
+    mkdir 03-demultiplex/;
 fi
 
-# Create directory for untrimmed files
-mkdir 02-raw/trimmed 2>/dev/null
 
-rm 10-log_files/"$TIMESTAMP"_01_cutadapt"${i%.fastq.gz}".log 2> /dev/null
-ls -1 02-raw/*.R1.fastq.gz | sed 's/.R1.fastq.gz//g' |
-parallel -j $NCPU cutadapt -a file:01-info_files/adapters.fasta \
-        -o 02-raw/trimmed/{/}.R1.fastq.gz \
-        -p 02-raw/trimmed/{/}.R2.fastq.gz \
-        -e 0.2 \
-        -m 50 \
-        {}.R1.fastq.gz \
-        {}.R2.fastq.gz '2>&1' '>>' 10-log_files/"$TIMESTAMP"_01_cutadapt"${i%.fastq.gz}".log
-
+outfile="03-demultiplex"
+folder="02-raw/trimmed"
+path="./GBSX/releases/GBSX_v1.3"
+barcode=$INFO_FILES/barcode_list.txt
+rad="-rad true"
+gzip="-gzip true"
+#qual="-q Illumina1.8"
+ls -1 $folder/*.R1.fastq.gz | sed 's/.R1.fastq.gz//g' |
+parallel -j $NCPU java -jar $path/GBSX_v1.3.jar --Demultiplexer \
+    -f1 {}.R1.fastq.gz \
+    -f2 {}.R2.fastq.gz \
+    -i $barcode $gzip $rad $qual -o ${outfile} &>> ./10-log_files/${TIMESTAMP}_gbsx.log

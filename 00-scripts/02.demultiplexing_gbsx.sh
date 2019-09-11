@@ -19,8 +19,8 @@ rad="-rad true"
 gzip="-gzip true"
 #qual="-q Illumina1.8"
 
-ls -l $folder/*R1.fq.gz |
+ls -l $folder/*R1.fastq.gz |
 parallel -j $NCPU java -jar "$path"/GBSX_v1.3.jar --Demultiplexer 
     -f1 "$folder"/{} 
-    -f2 "$folder"/"${i%.R1.fq.gz}.R2.fq.gz
+    -f2 "$folder"/"${i%.R1.fastq.gz}.R2.fastq.gz
     -i "$barcode" $gzip $rad $qual -o "$outfile"&>> /666-log/"$TIMESTAMP"_gbsx_"${i%.R1.fq.gz}".log

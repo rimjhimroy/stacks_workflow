@@ -20,8 +20,16 @@ cat 01-info_files/sample_information.csv |
     cut -f 1-4 |
     perl -pe 's/\.f(ast)*q\.gz//' |
     perl -pe 's/\t/\/sample_/' |
-    perl -pe 's/([ACTG]+)\t/\1.fq.gz\t/' |
-    awk '{print $1"\t04-all_samples/"$2"_"$3".fq.gz"}' > renaming_01.txt
+    perl -pe 's/([ACTG]+)\t/\1.1.fq.gz\t/' |
+    awk '{print $1"\t04-all_samples/"$2"_"$3".1.fq.gz"}' > renaming_01.txt
+
+cat 01-info_files/sample_information.csv |
+    grep -vE '^#' |
+    cut -f 1-4 |
+    perl -pe 's/\.f(ast)*q\.gz//' |
+    perl -pe 's/\t/\/sample_/' |
+    perl -pe 's/([ACTG]+)\t/\1.2.fq.gz\t/' |
+    awk '{print $1"\t04-all_samples/"$2"_"$3".2.fq.gz"}' >> renaming_01.txt
     #perl -pe 's/(\w+)\t(\S+)$/04-all_samples\/\1_\2.fq.gz/' #> renaming_01.txt
 
 cut -f 2 renaming_01.txt | sort -u > renaming_02.txt
